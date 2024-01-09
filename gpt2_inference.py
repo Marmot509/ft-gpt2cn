@@ -1,6 +1,6 @@
 
 import argparse
-from transformers import BertTokenizer, GPT2LMHeadModel, TextGenerationPipeline
+from transformers import BertTokenizer, GPT2LMHeadModel
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", type=str, default="uer/gpt2-distil-chinese-cluecorpussmall", help="model weights")

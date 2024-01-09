@@ -12,10 +12,10 @@ NUM_Epochs=2
 SAVE_INTERVAL=500
 WARMUP_STEPS=0
 
-RUN_NAME=fpft_lyrics
+RUN_NAME=ft-gpt2cn-lyrics
 BASE_MODEL_PATH=uer/gpt2-chinese-cluecorpussmall
-TRAINSET_PATH=formatted_data/train_data.jsonl
-VALSET_PATH=formatted_data/mini_val_data.jsonl
+TRAINSET_PATH=data/train_data.jsonl
+VALSET_PATH=data/mini_val_data.jsonl
 
 DATESTR=`date +%Y%m%d-%H%M%S`
 OUTPUT_DIR=output/${RUN_NAME}-${DATESTR}-${LR}

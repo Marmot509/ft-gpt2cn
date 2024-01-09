@@ -1,0 +1,16 @@
+transformers>=4.36.2
+tokenizers>=0.15.0
+cpm_kernels>=1.0.11
+torch>=2.1.0
+accelerate>=0.25.0
+streamlit>=1.29.0
+fastapi>=0.105.0
+uvicorn~=0.24.0
+loguru~=0.7.2
+mdtex2html>=1.2.0
+latex2mathml>=3.77.0
+deepspeed
+datasets>=2.16.0
+astunparse>=1.6.3
+accelerate>=0.25.0
+sentencepiece>=0.1.99
