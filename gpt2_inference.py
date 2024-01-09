@@ -1,7 +1,18 @@
 
+import argparse
 from transformers import BertTokenizer, GPT2LMHeadModel, TextGenerationPipeline
-tokenizer = BertTokenizer.from_pretrained("uer/gpt2-distil-chinese-cluecorpussmall")
-model = GPT2LMHeadModel.from_pretrained("uer/gpt2-distil-chinese-cluecorpussmall")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--model", type=str, default="uer/gpt2-distil-chinese-cluecorpussmall", help="model weights")
+parser.add_argument("--tokenizer", type=str, default=None, help="model tokenizer")
+
+args = parser.parse_args()
+
+if args.tokenizer is None:
+    args.tokenizer = args.model
+
+tokenizer = BertTokenizer.from_pretrained(args.tokenizer, trust_remote_code=True)
+model = GPT2LMHeadModel.from_pretrained(args.model, trust_remote_code=True)
 
 while True:
     prompt = input("Prompt:")
