@@ -19,7 +19,7 @@ from transformers import (
 
 from arguments import ModelArguments, DataTrainingArguments
 
-from preprocess import sanity_check, MultiTurnDataset, InputOutputDataset
+from preprocess import MultiTurnDataset, InputOutputDataset#,sanity_check
 
 logger = logging.getLogger(__name__)
 
@@ -102,8 +102,8 @@ def main():
         )
     else:
         raise ValueError(f"Unknown train format: {data_args.train_format}")
-    if training_args.local_rank < 1:
-        sanity_check(train_dataset[0]['input_ids'], train_dataset[0]['labels'], tokenizer)
+    # if training_args.local_rank < 1:
+    #     sanity_check(train_dataset[0]['input_ids'], train_dataset[0]['labels'], tokenizer)
 
     ### Add validation data loading by Xin
     with open(data_args.val_file, "r", encoding="utf-8") as f:

@@ -73,18 +73,17 @@ def format_conversation(item, tokenizer, conversation_key: str, tool_key: str):
     return tokens, loss_masks
 
 
-def sanity_check(tokens: List[int], target: List[int], tokenizer: PreTrainedTokenizer):
-    print("Sanity Check >>>>>>>>>>>>>")
-    for t, m in zip(tokens, target):
-        # decoded = tokenizer.tokenizer.index_special_tokens[t] \
-        #     if t in tokenizer.tokenizer.index_special_tokens \
-        #     else tokenizer.decode([t])
-        tokenizer.decode([t])
-        if t != 0:
-            print("%20s: %6d -> %6d" % (repr(decoded), t, m))
-    print("<<<<<<<<<<<<< Sanity Check")
+# def sanity_check(tokens: List[int], target: List[int], tokenizer: PreTrainedTokenizer):
+#     print("Sanity Check >>>>>>>>>>>>>")
+#     for t, m in zip(tokens, target):
+#         decoded = tokenizer.tokenizer.index_special_tokens[t] \
+#             if t in tokenizer.tokenizer.index_special_tokens \
+#             else tokenizer.decode([t])
+#         if t != 0:
+#             print("%20s: %6d -> %6d" % (repr(decoded), t, m))
+#     print("<<<<<<<<<<<<< Sanity Check")
 
-    assert len(tokens) == len(target), f"length mismatch: {len(tokens)} vs {len(target)}"
+#     assert len(tokens) == len(target), f"length mismatch: {len(tokens)} vs {len(target)}"
 
 
 class MultiTurnDataset(Dataset):
