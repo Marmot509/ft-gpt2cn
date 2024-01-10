@@ -18,4 +18,5 @@ model = GPT2LMHeadModel.from_pretrained(args.model, trust_remote_code=True)
 while True:
     prompt = input("Prompt:")
     text_generator = TextGenerationPipeline(model=model, tokenizer=tokenizer)
+    text_generator.model.config.pad_token_id = text_generator.model.config.eos_token_id
     text_generator(prompt, max_length=args.max_new_tokens, do_sample=True, temperature=0.9)
