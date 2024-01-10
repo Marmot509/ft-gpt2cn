@@ -8,6 +8,8 @@ from transformers import (
     AutoConfig,
     AutoModel,
     AutoTokenizer,
+    BertTokenizer,
+    GPT2LMHeadModel,
     DataCollatorForSeq2Seq,
     HfArgumentParser,
     Seq2SeqTrainingArguments,
@@ -63,8 +65,10 @@ def main():
     config.prefix_projection = model_args.prefix_projection
     config.use_cache = False
 
-    tokenizer = AutoTokenizer.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
-    model = AutoModel.from_pretrained(model_args.model_name_or_path, config=config, trust_remote_code=True)
+    #tokenizer = AutoTokenizer.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
+    tokenizer = BertTokenizer.from_pretrained(model_args.model_name_or_path, trust_remote_code=True)
+    #model = AutoModel.from_pretrained(model_args.model_name_or_path, config=config, trust_remote_code=True)
+    model = GPT2LMHeadModel.from_pretrained(model_args.model_name_or_path, config=config, trust_remote_code=True)
 
     if model_args.quantization_bit is not None:
         print(f"Quantized to {model_args.quantization_bit} bit")
