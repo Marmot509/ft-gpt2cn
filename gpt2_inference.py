@@ -1,6 +1,6 @@
 
 import argparse
-from transformers import BertTokenizer, GPT2LMHeadModel
+from transformers import BertTokenizer, GPT2LMHeadModel, TextGenerationPipeline
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", type=str, default="uer/gpt2-distil-chinese-cluecorpussmall", help="model weights")
@@ -17,8 +17,5 @@ model = GPT2LMHeadModel.from_pretrained(args.model, trust_remote_code=True)
 
 while True:
     prompt = input("Prompt:")
-    inputs = tokenizer(prompt, return_tensors="pt")
-    inputs = inputs.to("cuda")
-    response = model.generate(input_ids=inputs["input_ids"], max_length=inputs["input_ids"].shape[-1] + args.max_new_tokens)
-    response = response[0, inputs["input_ids"].shape[-1]:]
-    print("Response:", tokenizer.decode(response, skip_special_tokens=True))
+    text_generator = TextGenerationPipeline(model=model, tokenizer=tokenizer)
+    text_generator(prompt, max_length=args.max_new_tokens, do_sample=True, temperature=0.9)
